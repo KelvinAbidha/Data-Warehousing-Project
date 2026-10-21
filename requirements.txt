@@ -1,0 +1,15 @@
+# Core Data Processing
+pandas
+openpyxl
+numpy
+
+# Visualization & Reporting
+matplotlib
+seaborn
+
+# Database Drivers
+pymongo
+cassandra-driver
+pyasyncore
+neo4j
+python-dotenv
