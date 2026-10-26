@@ -227,12 +227,14 @@ MATCH (a)-[:LOCATED_AT]->(l:Location)
 MATCH (a)-[:CAUSED_BY]->(c:Cause)
 RETURN a, r, t, l, c LIMIT 40;
 ```
-*(Insert Screenshot 1 here: Wide view of nodes clustered around Mombasa-Nairobi and Nakuru corridors)*
+![Figure 1: Macro Cluster Network](figure1.png)
+*Figure 1: Neo4j Graph Visualization of High-Severity Road Accidents, Blackspots, and Root Causes.*
 
 ---
 
 ### Figure 2: Edge Property Inspector Demonstrating Severity Rating
-*(Insert Screenshot 2 here: Zoomed-in relationship edge displaying `severity: "Severe"`, `severity_score`, and `fatalities` properties)*
+![Figure 2: Edge Property Inspector](figure2.png)
+*Figure 2: Edge Property Inspector demonstrating severity parameter rating (`impact_level: "Severe"`, `fatalities: 3`, `severity_score: 15.5`) on the `OCCURRED_ON` relationship.*
 
 ---
 
@@ -244,7 +246,8 @@ MATCH (a)-[:LOCATED_AT]->(l:Location)
 MATCH (a)-[:CAUSED_BY]->(c:Cause)
 RETURN a, r, t, l, c;
 ```
-*(Insert Screenshot 3 here: Focused subgraph of the Nakuru highway network)*
+![Figure 3: Transit Corridor Subgraph](figure3.png)
+*Figure 3: Subgraph analysis of the Nakuru Transit Corridor revealing incident clustering and primary vehicular collision causes.*
 
 ---
 

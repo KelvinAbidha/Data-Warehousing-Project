@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ICS 2315 - Final Coursework Summary Report | Kelvin Abidha</title>
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg: #ffffff;
+      --bg-card: #f8fafc;
+      --danger: #dc2626;
+      --danger-light: #fef2f2;
+      --warning: #d97706;
+      --warning-light: #fffbeb;
+      --success: #059669;
+      --success-light: #ecfdf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background-color: #f1f5f9;
+      line-height: 1.6;
+      font-size: 14px;
+      padding: 24px 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .document-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--bg);
+      padding: 48px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+      border-radius: 8px;
+    }
+
+    /* Header Banner */
+    .header-banner {
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .header-title h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .header-title h2 {
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--accent);
+      margin-top: 4px;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .header-meta strong {
+      color: var(--primary);
+      font-size: 13px;
+    }
+
+    .badge-link {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 3px 10px;
+      background: var(--primary-light);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    /* KPI Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      border-top: 3px solid var(--accent);
+    }
+
+    .kpi-value {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Typography & Section Styles */
+    h2.section-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin: 28px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h3.sub-heading {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary-light);
+      margin: 18px 0 10px 0;
+    }
+
+    p {
+      margin-bottom: 12px;
+      color: #334155;
+    }
+
+    ul, ol {
+      margin-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px 0;
+      font-size: 12.5px;
+    }
+
+    th, td {
+      padding: 10px 12px;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .badge-severe { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
+    .badge-moderate { background: var(--warning-light); color: var(--warning); border: 1px solid #fef3c7; }
+    .badge-minor { background: #f1f5f9; color: var(--text-muted); border: 1px solid var(--border); }
+    .badge-scan-bad { background: var(--danger-light); color: var(--danger); }
+    .badge-scan-good { background: var(--success-light); color: var(--success); }
+
+    /* Callout Card */
+    .callout {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+
+    .callout-danger {
+      background: var(--danger-light);
+      border-left: 4px solid var(--danger);
+    }
+
+    .callout-danger .callout-title {
+      color: var(--danger);
+    }
+
+    /* Code Blocks */
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: "SFMono-Regular", Consolas, "Fira Code", monospace;
+      font-size: 11.5px;
+      overflow-x: auto;
+      margin: 12px 0 16px 0;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: 12px;
+      background: #f1f5f9;
+      color: #0f172a;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    pre code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
+    }
+
+    /* Figure Cards */
+    .figure-container {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 20px 0;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      page-break-inside: avoid;
+    }
+
+    .figure-container img {
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+      display: block;
+    }
+
+    .figure-caption {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .figure-caption strong {
+      color: var(--primary);
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+        font-size: 11.5px;
+      }
+
+      .document-container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      @page {
+        size: A4;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+
+      .header-banner {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+      }
+
+      .kpi-grid {
+        margin-bottom: 20px;
+      }
+
+      .kpi-value {
+        font-size: 20px;
+      }
+
+      .section-heading {
+        margin-top: 20px;
+        break-after: avoid;
+      }
+
+      .figure-container, table, .callout {
+        break-inside: avoid;
+      }
+
+      pre {
+        font-size: 10px;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="document-container">
+    
+    <!-- Header Banner -->
+    <div class="header-banner">
+      <div class="header-title">
+        <h1>ICS 2315: Data Architecture & Warehousing</h1>
+        <h2>Coursework Implementation & Analytical Summary Report</h2>
+      </div>
+      <div class="header-meta">
+        <div><strong>Student:</strong> Kelvin Abidha</div>
+        <div><strong>Module:</strong> NoSQL & Graph Analytics</div>
+        <div><strong>Date:</strong> October 2026</div>
+        <a href="https://github.com/KelvinAbidha/Data-Warehousing-Project" class="badge-link">GitHub Repository</a>
+      </div>
+    </div>
+
+    <!-- Executive KPI Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-value">81,504</div>
+        <div class="kpi-label">NSE Records Cleaned</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">6.4x</div>
+        <div class="kpi-label">Mongo Index Speedup</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">5.36 ms</div>
+        <div class="kpi-label">Cassandra Partition Read</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-value">262 / 362</div>
+        <div class="kpi-label">Graph Nodes / Links</div>
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 class="section-heading">1. Executive Summary & Theoretical Framework</h2>
+    <p>
+      This deliverable documents the end-to-end design, implementation, and empirical evaluation of three non-relational database architectures across two distinct enterprise datasets:
+    </p>
+    <ul>
+      <li><strong>Document Store (MongoDB)</strong>: Document modeling, B-Tree compound indexing benchmarks, execution plan diagnostics (<code>.explain()</code>), and aggregation pipelines.</li>
+      <li><strong>Distributed Wide-Column Store (Apache Cassandra)</strong>: Query-driven data modeling (Chebotko methodology), token ring consistent hashing, and unpartitioned scan rejection.</li>
+      <li><strong>Graph Database (Neo4j)</strong>: Index-free adjacency, topological entity-relationship modeling, and Cypher multi-hop traversals on road safety records.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">Core Textbook Alignment (Database System Concepts 7th Ed, Chapter 10)</div>
+      This project demonstrates <strong>Consistent Hashing</strong> (p. 467) via Cassandra's Murmur3Partitioner, <strong>Query Optimization & B-Tree Indexing</strong> (Chapters 12–13) via MongoDB explain plans, <strong>MapReduce Aggregations</strong> (p. 483) via MongoDB aggregation pipelines, and <strong>Index-Free Adjacency</strong> in Neo4j where link traversals execute at raw memory pointer speeds ($O(1)$ per hop).
+    </div>
+
+    <!-- Section 2 -->
+    <h2 class="section-heading">2. Assignment 1: NoSQL Data Processing (NSE Stock Market)</h2>
+    
+    <h3 class="sub-heading">2.1 Data Engineering & ETL Pipeline (src/etl.py)</h3>
+    <p>
+      Six yearly datasets (2007–2012) containing 81,504 raw market trades were consolidated. Key transformations implemented:
+    </p>
+    <ul>
+      <li><strong>Header Schema Normalization</strong>: Resolved an integration anomaly where 2008 used Title Case (<code>Date</code>, <code>Adjusted</code>) while 2007/2009–2012 used uppercase (<code>DATE</code>, <code>Adjust</code>).</li>
+      <li><strong>Numeric Coercion</strong>: Removed formatting commas from volume (<code>"7,800"</code> &rarr; <code>7800</code>) and stripped <code>%</code> characters from daily returns.</li>
+      <li><strong>Missing Value Standardization</strong>: Replaced non-standard dash placeholders (<code>"-"</code>) with IEEE <code>NaN</code> / BSON <code>null</code>.</li>
+      <li><strong>Chronological Formatting</strong>: Standardized date strings into native ISO timestamps (<code>datetime64[us]</code>).</li>
+    </ul>
+
+    <h3 class="sub-heading">2.2 MongoDB Implementation & Indexing Experiment (src/mongo_manager.py)</h3>
+    <p>
+      Records were modeled into nested BSON documents for optimal <strong>locality of reference</strong>:
+    </p>
+    <pre><code>{
+  "code": "EQTY",
+  "name": "Equity Bank",
+  "date": ISODate("2007-01-02T00:00:00Z"),
+  "trading": { "day_price": 141.0, "volume": 7500, "change_pct": 2.13 },
+  "intraday": { "low": 140.0, "high": 145.0 },
+  "yearly_range": { "low": 19.5, "high": 36.5 }
+}</code></pre>
+
+    <p><strong>The Indexing Experiment:</strong> Querying Safaricom (<code>'SCOM'</code>) in 2012 with <code>volume > 1,000,000</code>, sorted by <code>date DESC</code>:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Indexing Scenario</th>
+          <th>Winning Stage</th>
+          <th>Docs Examined</th>
+          <th>Keys Examined</th>
+          <th>Returned Docs</th>
+          <th>Execution Latency</th>
+          <th>Speedup</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Scenario 1: No Index</strong></td>
+          <td><span class="badge badge-scan-bad">SORT &rarr; COLLSCAN</span></td>
+          <td>81,504</td>
+          <td>0</td>
+          <td>220</td>
+          <td>83 ms</td>
+          <td>1.0x (Baseline)</td>
+        </tr>
+        <tr>
+          <td><strong>Scenario 2: Single Index <code>{'code': 1}</code></strong></td>
+          <td><span class="badge badge-moderate">SORT &rarr; FETCH</span></td>
+          <td>1,146</td>
+          <td>1,146</td>
+          <td>220</td>
+          <td>21 ms</td>
+          <td>~4.0x</td>
+        </tr>
+        <tr>
+          <td><strong>Scenario 3: Compound <code>{'code': 1, 'date': -1}</code></strong></td>
+          <td><span class="badge badge-scan-good">FETCH &rarr; IXSCAN</span></td>
+          <td>251</td>
+          <td>251</td>
+          <td>220</td>
+          <td><strong>13 ms</strong></td>
+          <td><strong>~6.4x</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <div class="callout-title">Database Theory: The ESR Rule (Equality &rarr; Sort &rarr; Range)</div>
+      In Scenario 1, MongoDB scanned all 81,504 records into RAM and executed an in-memory sort buffer. In Scenario 3, by ordering the compound index with Equality (<code>code</code>) first, followed by Sort (<code>date DESC</code>), MongoDB read the index tree in sorted sequence—completely eliminating the in-memory sort and dropping examined documents to 251.
+    </div>
+
+    <h3 class="sub-heading">2.3 Apache Cassandra Distributed Modeling (src/cassandra_manager.py)</h3>
+    <p>
+      In distributed wide-column architecture, tables are designed strictly around target queries:
+    </p>
+    <pre><code>-- Historical Stock Lookups by Ticker
+CREATE TABLE coursework_nse.stock_history_by_ticker (
+    code text,
+    date date,
+    name text,
+    day_price double,
+    volume bigint,
+    change_pct double,
+    PRIMARY KEY ((code), date)
+) WITH CLUSTERING ORDER BY (date DESC);
+
+-- Monthly Market-Wide Snapshots
+CREATE TABLE coursework_nse.daily_market_snapshot (
+    year int,
+    month int,
+    date date,
+    code text,
+    name text,
+    day_price double,
+    volume bigint,
+    PRIMARY KEY ((year, month), date, code)
+) WITH CLUSTERING ORDER BY (date DESC, code ASC);</code></pre>
+
+    <div class="callout callout-danger">
+      <div class="callout-title">Architectural Experiment: Scan Rejection (code=2200)</div>
+      Attempting <code>SELECT * FROM stock_history_by_ticker WHERE day_price > 100</code> triggered:
+      <code>InvalidRequest: code=2200 [Invalid query] message="Cannot execute this query as it might involve data filtering and thus may have unpredictable performance... use ALLOW FILTERING"</code>.
+      Cassandra forbids unpartitioned full scans by default because broadcasting queries to all nodes breaks linear scalability. Forcing <code>ALLOW FILTERING</code> degraded latency to 31.51 ms.
+    </div>
+
+    <!-- Section 3 -->
+    <h2 class="section-heading">3. Assignment 2: Graph Data Analytics (Traffic Incidents)</h2>
+    <p>
+      Constructed in Neo4j using 78 geocoded crash records (375 fatalities), yielding <strong>262 Nodes</strong> and <strong>362 Relationships</strong>.
+    </p>
+
+    <h3 class="sub-heading">3.1 Relationship Severity Parameter Rating</h3>
+    <p>
+      Rated severity scores directly onto <code>[:OCCURRED_ON]</code> relationships:
+      <code>Severity Score = (total_dead &times; 2.5) + spot_freq + risk_weight</code>
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Severity Parameter Level</th>
+          <th>Rated Links</th>
+          <th>Fatalities</th>
+          <th>Avg Severity Score</th>
+          <th>Classification Criteria</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-severe">Severe</span></td>
+          <td>56 links</td>
+          <td>362 deaths</td>
+          <td>20.54</td>
+          <td>&ge; 3 deaths or High risk classification</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-moderate">Moderate</span></td>
+          <td>13 links</td>
+          <td>13 deaths</td>
+          <td>5.42</td>
+          <td>1–2 deaths or Medium risk classification</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-minor">Minor</span></td>
+          <td>9 links</td>
+          <td>0 deaths</td>
+          <td>2.11</td>
+          <td>0 deaths or Low risk classification</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="sub-heading">3.2 Cypher Analytical Insights</h3>
+    <ul>
+      <li><strong>Deadliest Corridors</strong>: <em>Mombasa–Nairobi Highway</em> (65 fatalities, 5 Severe), <em>Nakuru–Kericho Highway</em> (58 fatalities, 3 Severe), and <em>Nakuru–Nairobi Highway</em> (53 fatalities, 7 Severe).</li>
+      <li><strong>Multi-Hop Root Cause Traversal</strong>: Tracing paths from Nakuru County revealed heavy freight brake failures (52 deaths at Londiani) and public service vehicle (PSV) head-on collisions (32 deaths at Kayole Bridge & Naivasha).</li>
+      <li><strong>Blackspot Centrality</strong>: <em>Nithi Bridge</em> (4 collisions, 17 fatalities) and <em>Londiani Junction</em> (2 collisions, 55 fatalities) exhibit highest degree centrality.</li>
+    </ul>
+
+    <!-- Section 4 -->
+    <h2 class="section-heading">4. Visual Graph Evidence (Neo4j Browser UI)</h2>
+    
+    <div class="figure-container">
+      <img src="figure1.png" alt="Figure 1: Macro Cluster Network of High-Severity Road Accidents">
+      <div class="figure-caption">
+        <strong>Figure 1:</strong> Neo4j Graph Visualization of High-Severity Road Accidents, Blackspots, and Root Causes across Kenya.
+      </div>
+    </div>
+
+    <div class="figure-container">
+      <img src="figure2.png" alt="Figure 2: Edge Property Inspector Demonstrating Severity Rating">
+      <div class="figure-caption">
+        <strong>Figure 2:</strong> Edge Property Inspector demonstrating severity parameter rating (<code>severity: "Severe"</code>, <code>fatalities: 3</code>, <code>severity_score: 15.5</code>) on the <code>OCCURRED_ON</code> relationship.
+      </div>
+    </div>
+
+    <div class="figure-container">
+      <img src="figure3.png" alt="Figure 3: Transit Corridor Subgraph Analysis">
+      <div class="figure-caption">
+        <strong>Figure 3:</strong> Subgraph analysis of the Nakuru Transit Corridor revealing incident clustering and primary vehicular collision causes.
+      </div>
+    </div>
+
+    <!-- Section 5 -->
+    <h2 class="section-heading">5. Comparative Architectural Critique</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Dimension</th>
+          <th>Relational (RDBMS)</th>
+          <th>Document Store (MongoDB)</th>
+          <th>Wide-Column (Cassandra)</th>
+          <th>Graph Database (Neo4j)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Core Data Model</strong></td>
+          <td>2D Tables & Tuples</td>
+          <td>Nested BSON Documents</td>
+          <td>Sparse Wide-Columns</td>
+          <td>Nodes & Relationships</td>
+        </tr>
+        <tr>
+          <td><strong>Schema Design</strong></td>
+          <td>Normalized 3NF</td>
+          <td>Hierarchical / Embedded</td>
+          <td>Query-Driven Denormalization</td>
+          <td>Property Graph Topology</td>
+        </tr>
+        <tr>
+          <td><strong>Partitioning Mechanism</strong></td>
+          <td>Range / Hash Sharding</td>
+          <td>Hash / Range via <code>mongos</code></td>
+          <td>Consistent Hashing Ring</td>
+          <td>Clustered / Fabric Sharding</td>
+        </tr>
+        <tr>
+          <td><strong>Query Mechanism</strong></td>
+          <td>Declarative SQL (JOINs)</td>
+          <td>MQL + Aggregation Pipeline</td>
+          <td>CQL (No JOINs allowed)</td>
+          <td>Cypher (Pattern Matching)</td>
+        </tr>
+        <tr>
+          <td><strong>Performance Scaling</strong></td>
+          <td>Vertical (Scale-Up)</td>
+          <td>Horizontal (Read Replicas)</td>
+          <td>Masterless Linear Write</td>
+          <td>Index-Free Adjacency (O(1))</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 6 -->
+    <h2 class="section-heading">6. Verification & Reproduction</h2>
+    <p>All scripts and schemas are maintained in the version-controlled project repository: <a href="https://github.com/KelvinAbidha/Data-Warehousing-Project">https://github.com/KelvinAbidha/Data-Warehousing-Project</a>.</p>
+    <pre><code># 1. Start Cassandra & Neo4j containers
+docker compose up -d
+
+# 2. Run ETL pipeline for 81,504 market records
+python src/etl.py
+
+# 3. Execute MongoDB ingestion, indexing benchmarks & aggregations
+python src/mongo_manager.py
+
+# 4. Execute Cassandra keyspace creation & query modeling
+python src/cassandra_manager.py
+
+# 5. Execute Neo4j Property Graph construction & Cypher analytics
+python src/graph_manager.py</code></pre>
+
+  </div>
+
+</body>
+</html>
