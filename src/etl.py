@@ -48,10 +48,12 @@ def clean_percentage_series(series: pd.Series) -> pd.Series:
     )
 
 
-def run_etl(data_dir: str = ".") -> pd.DataFrame:
+def run_etl(data_dir: str = None) -> pd.DataFrame:
     """
     Finds and processes all NSE stock CSV files from 2007 to 2012.
     """
+    if data_dir is None:
+        data_dir = "data" if os.path.exists("data") else "."
     csv_pattern = os.path.join(data_dir, "NSE_data_all_stocks_20*.csv")
     files = sorted(glob.glob(csv_pattern))
     
@@ -154,7 +156,7 @@ def run_etl(data_dir: str = ".") -> pd.DataFrame:
 
 
 if __name__ == "__main__":
-    df_clean = run_etl(".")
+    df_clean = run_etl()
     
     print("=== DATA INTEGRITY & SUMMARY STATISTICS ===")
     print(f"Date Range: {df_clean['date'].min().strftime('%Y-%m-%d')} to {df_clean['date'].max().strftime('%Y-%m-%d')}")

@@ -47,11 +47,13 @@ def clean_val(val):
     return val
 
 
-def ingest_clean_data(csv_path: str = "cleaned_nse_stocks_2007_2012.csv", batch_size: int = 5000):
+def ingest_clean_data(csv_path: str = None, batch_size: int = 5000):
     """
     Reads the cleaned NSE CSV and ingests records into MongoDB
     using a nested BSON document model.
     """
+    if csv_path is None:
+        csv_path = "data/cleaned_nse_stocks_2007_2012.csv" if os.path.exists("data/cleaned_nse_stocks_2007_2012.csv") else "cleaned_nse_stocks_2007_2012.csv"
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Cleaned dataset '{csv_path}' not found. Run src/etl.py first.")
 

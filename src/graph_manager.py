@@ -62,8 +62,10 @@ def compute_severity(total_dead: int, spot_freq: int, risk_level: str):
     return impact, score
 
 
-def load_and_clean_data(filepath: str = "TRAFFIC ACCIDENTS DATA CLEANED.xlsx") -> pd.DataFrame:
+def load_and_clean_data(filepath: str = None) -> pd.DataFrame:
     """Reads Excel file and standardizes text, dates, and severity fields."""
+    if filepath is None:
+        filepath = "data/TRAFFIC ACCIDENTS DATA CLEANED.xlsx" if os.path.exists("data/TRAFFIC ACCIDENTS DATA CLEANED.xlsx") else "TRAFFIC ACCIDENTS DATA CLEANED.xlsx"
     if not os.path.exists(filepath):
         raise FileNotFoundError(f"Excel dataset '{filepath}' not found.")
 

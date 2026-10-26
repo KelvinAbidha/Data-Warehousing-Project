@@ -111,10 +111,12 @@ def clean_num(val, default=None):
     return float(val)
 
 
-def ingest_data(session, csv_path: str = "cleaned_nse_stocks_2007_2012.csv"):
+def ingest_data(session, csv_path: str = None):
     """
     Ingests 81,504 records concurrently into both Cassandra tables.
     """
+    if csv_path is None:
+        csv_path = "data/cleaned_nse_stocks_2007_2012.csv" if os.path.exists("data/cleaned_nse_stocks_2007_2012.csv") else "cleaned_nse_stocks_2007_2012.csv"
     if not os.path.exists(csv_path):
         raise FileNotFoundError(f"Cleaned dataset '{csv_path}' not found. Run src/etl.py first.")
 

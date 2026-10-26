@@ -2,6 +2,7 @@
 ## Final Deliverable: Comprehensive Coursework Summary Report
 
 **Author:** Kelvin Abidha  
+**Reg No:** SCT212-0063/2023  
 **Course:** ICS 2315 — Data Architecture & Warehousing  
 **Reference Textbook:** *Database System Concepts (7th Edition)*, Silberschatz, Korth, Sudarshan (Chapter 10: Big Data)  
 **Repository:** [GitHub: KelvinAbidha/Data-Warehousing-Project](https://github.com/KelvinAbidha/Data-Warehousing-Project.git)
@@ -227,13 +228,13 @@ MATCH (a)-[:LOCATED_AT]->(l:Location)
 MATCH (a)-[:CAUSED_BY]->(c:Cause)
 RETURN a, r, t, l, c LIMIT 40;
 ```
-![Figure 1: Macro Cluster Network](figure1.png)
+![Figure 1: Macro Cluster Network](docs/figures/figure1.png)
 *Figure 1: Neo4j Graph Visualization of High-Severity Road Accidents, Blackspots, and Root Causes.*
 
 ---
 
 ### Figure 2: Edge Property Inspector Demonstrating Severity Rating
-![Figure 2: Edge Property Inspector](figure2.png)
+![Figure 2: Edge Property Inspector](docs/figures/figure2.png)
 *Figure 2: Edge Property Inspector demonstrating severity parameter rating (`impact_level: "Severe"`, `fatalities: 3`, `severity_score: 15.5`) on the `OCCURRED_ON` relationship.*
 
 ---
@@ -246,7 +247,7 @@ MATCH (a)-[:LOCATED_AT]->(l:Location)
 MATCH (a)-[:CAUSED_BY]->(c:Cause)
 RETURN a, r, t, l, c;
 ```
-![Figure 3: Transit Corridor Subgraph](figure3.png)
+![Figure 3: Transit Corridor Subgraph](docs/figures/figure3.png)
 *Figure 3: Subgraph analysis of the Nakuru Transit Corridor revealing incident clustering and primary vehicular collision causes.*
 
 ---
